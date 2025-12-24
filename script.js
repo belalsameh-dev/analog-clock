@@ -1,3 +1,8 @@
+const pointer = {
+  second: document.querySelector(".second"),
+  minute: document.querySelector(".minute"),
+  hour: document.querySelector(".hour"),
+};
 const points = document.querySelector(".points");
 
 let hourNumber = 12;
@@ -18,27 +23,21 @@ for (let i = 0; i < 360; i += 6) {
   points.appendChild(point);
 }
 
-const secondsPointer = document.querySelector(".seconds"),
-  minutesPointer = document.querySelector(".minutes"),
-  hoursPointer = document.querySelector(".hours");
-
-const setPointer = (pointer, position) => {
-  pointer.style.transition = position === 0 ? "none" : "0.25s";
-  pointer.style.transform = `rotate(${position - 180}deg)`;
+const setPointer = (pointer, deg) => {
+  pointer.style.transition = deg === 0 ? "none" : "0.25s";
+  pointer.style.transform = `rotate(${deg - 180}deg)`;
 };
 
-setInterval(() => {
+function setTime() {
   const now = new Date();
 
-  const seconds = now.getSeconds(),
-    minutes = now.getMinutes(),
-    hours = now.getHours() % 12;
+  const secDeg = now.getSeconds() * 6,
+    minDeg = now.getMinutes() * 6,
+    hourDeg = now.getHours() * 30 + minDeg / 12;
 
-  const secDeg = seconds * 6,
-    minDeg = minutes * 6,
-    hourDeg = hours * 30 + minutes * 0.5;
-
-  setPointer(secondsPointer, secDeg);
-  setPointer(minutesPointer, minDeg);
-  setPointer(hoursPointer, hourDeg);
-}, 1000);
+  setPointer(pointer.second, secDeg);
+  setPointer(pointer.minute, minDeg);
+  setPointer(pointer.hour, hourDeg);
+}
+setTime();
+setInterval(setTime, 1000);

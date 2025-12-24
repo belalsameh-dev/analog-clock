@@ -70,7 +70,7 @@ body {
     overflow: hidden;
 }
 
-.seconds, .minutes, .hours {
+.second, .minute, .hour {
     width: 2px;
     height: 155px;
     position: absolute;
@@ -80,7 +80,7 @@ body {
     transform-origin: 1px 0;
 }
 
-.seconds {
+.second {
     background: var(--orange);
     height: 182px;
     top: calc(50% - 26px);
@@ -88,16 +88,16 @@ body {
     transform-origin: 1px 26px;
 }
 
-.minutes, .hours {
+.minute, .hour {
     background: var(--white);
 }
 
-.hours {
+.hour {
     height: 110px;
     transform: rotate(-30deg);
 }
 
-.minutes::before, .hours::before {
+.minute::before, .hour::before {
     content: "";
     background: var(--white);
     position: absolute;
